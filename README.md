@@ -33,3 +33,14 @@ objeto_cpf = Cpf(cpf)
 
 print(objeto_cpf)
 ```
+# Pacotes Python
+O PyPI tem o pacote `validate-docbr`, que cuida da validação de dados no padrão brasileiro (CPF, telefone etc.).
+
+Mudança no arquivo `main.py`, para usar a validação do pacote `validate-docbr`:
+```python
+from validate_docbr import CPF
+
+cpf =  CPF()
+
+print(cpf.validate("01234567890")) # Retorna True
+```
