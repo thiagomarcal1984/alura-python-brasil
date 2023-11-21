@@ -141,3 +141,29 @@ documento = CpfCnpj(exemplo_cnpj, 'cnpj')
 
 print(documento)
 ```
+# Máscara para CNPJ
+Na aula anterior não foi proposta uma mudança no método `__str__`. Desta vez a mudança no código foi proposta:
+
+```python
+from validate_docbr import CPF, CNPJ
+class CpfCnpj:
+    # Resto do código
+    def __str__(self):
+        if self.tipo_documento == 'cpf':
+            return self.format_cpf()
+        elif self.tipo_documento == 'cnpj':
+            return self.format_cnpj()
+    # Resto do código
+```
+Usando a classe modificada no arquivo `main.py`:
+```python
+from cpf_cnpj import CpfCnpj
+
+exemplo_cnpj = '35379838000112'
+documento = CpfCnpj(exemplo_cnpj, 'cnpj')
+print(documento)
+
+exemplo_cpf = '32007832062'
+documento = CpfCnpj(exemplo_cpf, 'cpf')
+print(documento)
+```
