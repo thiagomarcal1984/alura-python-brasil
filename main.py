@@ -1,5 +1,5 @@
-from validate_docbr import CPF
+from Cpf import Cpf
 
-cpf =  CPF()
+cpf_um =  Cpf("15316264754")
 
-print(cpf.validate("01234567890"))
+print(cpf_um)
