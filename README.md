@@ -249,3 +249,45 @@ resposta = re.search(padrao, texto)
 # Retorna "rodrigo123@gmail.com.br"
 print(resposta.group())
 ```
+
+# Definindo padrão para Telefones
+Classe para validação de telefone:
+```python
+import re
+
+class TelefonesBr:
+    def __init__(self, telefone):
+        if self.valida_telefone(telefone):
+            self.numero = telefone
+        else:
+            raise ValueError("Número incorreto.")
+
+    def valida_telefone(self, telefone):
+        # Padrão:   2 ou 3 dígitos para o país;
+        #           2 dígitos para o código de área;
+        #           4 ou 5 dígitos para o prefixo;
+        #           4 dígitos para o sufixo.
+        padrao = "\d{2,3}\d{2}\d{4,5}\d{4}"
+        resposta= re.findall(padrao, telefone)
+        if resposta:
+            return True
+        else:
+            return False
+```
+Uso da classe no arquivo `main.py`:
+```python
+from TelefonesBr import TelefonesBr
+import re
+
+padrao_molde = "(xx) aaaa-wwww"
+padrao = "\(?\d{2}\)?\s*\d{4,5}\s*-?\s*\d{4}"
+texto = "Meus telefones são 3199959-1984 e (31) 3069 - 3241"
+reposta = re.findall(padrao, texto)
+# Resposta: ['3199959-1984', '(31) 3069 - 3241']
+print(reposta) 
+
+telefone = "552126481234"
+telefone_objeto = TelefonesBr(telefone)
+print(telefone_objeto.numero)
+# Resposta: "552126481234"
+```
