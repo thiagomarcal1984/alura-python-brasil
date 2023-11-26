@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 class DatasBr:
     def __init__(self):
@@ -42,3 +42,9 @@ class DatasBr:
 
     def __str__(self):
         return self.format_data()
+
+    def tempo_cadastro(self):
+        tempo_cadastro = (datetime.today() + timedelta(days=30)) - self.momento_cadastro
+        # Momento cadastro é igual a hoje, na prática.
+        # Resultado: 30 days, 0:00:00
+        return tempo_cadastro

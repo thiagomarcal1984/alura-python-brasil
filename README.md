@@ -482,3 +482,26 @@ cadastro = DatasBr()
 print('Dia formatado no padrão brasileiro:', cadastro.format_data())
 # Dia formatado no padrão brasileiro: 26/11/2023 19:55
 ```
+# Diferença entre datas e timedelta
+A classe `timedelta` implementa os métodos especiais `__add__` e `__sub__`, que permitem somar e subtrair intervalos de tempo.
+
+Classe `DatasBr` modificada:
+```python
+from datetime import datetime, timedelta
+
+class DatasBr:
+    # Resto do código
+    def tempo_cadastro(self):
+        tempo_cadastro = (datetime.today() + timedelta(days=30)) - self.momento_cadastro 
+        # Momento cadastro é igual a hoje, na prática.
+        # Resultado: 30 days, 0:00:00
+        return tempo_cadastro
+```
+Uso da classe no arquivo `main.py`
+```python
+from datas_br import DatasBr
+
+hoje = DatasBr()
+
+print(hoje.tempo_cadastro())
+```
