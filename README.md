@@ -457,3 +457,28 @@ print('Dia do cadastro:', cadastro.momento_cadastro)
 print('Mês do cadastro:', cadastro.mes_cadastro())
 print('Dia da semana do cadastro:', cadastro.dia_semana())
 ```
+# Formatando Datas
+Mudanças na classe DatasBr para inserir a formatação da data/hora para o padrão brasileiro:
+```python
+from datetime import datetime
+
+class DatasBr:
+    # Resto do código.
+    def format_data(self):
+        data_formatada = self.momento_cadastro.strftime('%d/%m/%Y %H:%M')
+        return data_formatada
+
+    def __str__(self):
+        return self.format_data()
+
+```
+Uso da classe `DatasBr` no arquivo `main.py`:
+```python
+from datas_br import DatasBr
+
+cadastro = DatasBr()
+# Resto do código
+
+print('Dia formatado no padrão brasileiro:', cadastro.format_data())
+# Dia formatado no padrão brasileiro: 26/11/2023 19:55
+```

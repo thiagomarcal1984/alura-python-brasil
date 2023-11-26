@@ -35,3 +35,10 @@ class DatasBr:
         # Em Python, a weekday começa de zero, segunda-feira.
         dia_semana =  self.momento_cadastro.weekday()
         return dia_semana_lista[dia_semana]
+
+    def format_data(self):
+        data_formatada = self.momento_cadastro.strftime('%d/%m/%Y %H:%M')
+        return data_formatada
+
+    def __str__(self):
+        return self.format_data()
