@@ -406,3 +406,54 @@ class TelefonesBr:
     def __str__(self):
         return self.format_numero()
 ```
+# Datas no Python
+Classe `DatasBr`:
+```python
+from datetime import datetime
+
+class DatasBr:
+    def __init__(self):
+        self.momento_cadastro = datetime.today()
+
+    def mes_cadastro(self):
+        meses_do_ano = [
+            'janeiro',
+            'fevereiro',
+            'março',
+            'abril',
+            'maio',
+            'junho',
+            'julho',
+            'agosto',
+            'setembro',
+            'outubro',
+            'novembro',
+            'dezembro',
+        ]
+        mes_cadastro = self.momento_cadastro.month - 1
+        return meses_do_ano[mes_cadastro]
+
+    def dia_semana(self):
+        dia_semana_lista = [
+            'segunda',
+            'terça',
+            'quarta',
+            'quinta',
+            'sexta',
+            'sábado',
+            'domingo',
+        ]
+        # Em Python, a weekday começa de zero, segunda-feira.
+        dia_semana =  self.momento_cadastro.weekday()
+        return dia_semana_lista[dia_semana]
+```
+
+Chamando a classe no arquivo `main.py`:
+```python
+from datas_br import DatasBr
+
+cadastro = DatasBr()
+print('Dia do cadastro:', cadastro.momento_cadastro)
+print('Mês do cadastro:', cadastro.mes_cadastro())
+print('Dia da semana do cadastro:', cadastro.dia_semana())
+```
