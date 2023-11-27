@@ -557,3 +557,58 @@ objeto_cep = BuscaEndereco(cep)
 resposta = objeto_cep.acessa_via_cep()
 print(resposta.text)
 ```
+# Respostas API Via CEP
+Teoria:
+```python
+import requests
+resposta = requests.get(f'https://viacep.com.br/ws/{cep}/json/')
+
+print('Diferenças entre resposta.text e resposta.json():')
+print(resposta.text)
+print(resposta.json())
+print()
+
+print('Tipos de dados:')
+print('str:', type(resposta.text))
+print('dict:', type(resposta.json()))
+print()
+
+print('Acessando a resposta do ViaCEP:')
+print('Buscando o logradouro:', resposta.json()['logradouro'])
+print('Buscando o bairro:', resposta.json()['bairro'])
+print()
+```
+Alterações no arquivo `acesso_cep.py` (classe `BuscaEndereco`)
+```python
+import requests
+
+class BuscaEndereco:
+    # Resto do código
+    def acessa_via_cep(self):
+        url = f"https://viacep.com.br/ws/{self.cep}/json/"
+        r = requests.get(url)
+        dados = r.json()
+        # Repare que o retorno agora é uma tupla, não o JSON todo.
+        return (
+            dados['bairro'],
+            dados['localidade'],
+            dados['uf'],
+        )
+
+```
+Uso da classe no arquivo `main.py`:
+```python
+from acesso_cep import BuscaEndereco
+
+cep = '01001000'
+objeto_cep = BuscaEndereco(cep)
+
+# Uso do objeto BuscaEndereco:
+bairro, cidade, estado = objeto_cep.acessa_via_cep()
+print(
+    'Parâmetros separados:\n',
+    'bairro:'.capitalize(), bairro, '\n',
+    'cidade:'.capitalize(), cidade, '\n',
+    'estado:'.capitalize(), estado, '\n',
+)
+```
