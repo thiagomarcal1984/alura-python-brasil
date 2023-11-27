@@ -534,3 +534,26 @@ cep = 25870145
 objeto_cep = BuscaEndereco(cep)
 print(objeto_cep)
 ```
+# Acessando APIs com Python
+Modificações da classe `BuscaEndereco` no arquivo `acesso_cep.py`.
+> Lembre-se de instalar a biblioteca `requests` com `pip install requests`.
+```python
+import requests
+
+class BuscaEndereco:
+    # Resto do código.
+    def acessa_via_cep(self):
+        url = f"https://viacep.com.br/ws/{self.cep}/json/"
+        r = requests.get(url)
+        return r
+
+```
+Uso da classe no arquivo `main.py`:
+```python
+from acesso_cep import BuscaEndereco
+
+cep = '01001000'
+objeto_cep = BuscaEndereco(cep)
+resposta = objeto_cep.acessa_via_cep()
+print(resposta.text)
+```
